@@ -1,0 +1,4 @@
+total 8
+drwxr-xr-x  3 puneetvashisht  staff  96  3 Apr 10:22 unixdemo
+-rw-r--r--  1 puneetvashisht  staff  14  3 Apr 10:24 README.md
+-rw-r--r--  1 puneetvashisht  staff   0  3 Apr 10:35 filelist.txt

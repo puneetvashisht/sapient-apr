@@ -5,8 +5,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 
 public class EmployeeDAO {
@@ -33,8 +31,29 @@ public class EmployeeDAO {
 	public Employee findEmployee(int id){
 		
 		EntityManager em = emf.createEntityManager();
+	
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		
 		Employee emp =  em.find(Employee.class, id);
+//		emp.setSalary(33333.44);
+		
+	
+		transaction.commit();
 		em.close();
+		
+		emp.setSalary(44444.44);
+		
+		EntityManager em1 = emf.createEntityManager();
+		
+		EntityTransaction transaction1 = em1.getTransaction();
+		transaction1.begin();
+		
+		em1.merge(emp);
+		
+		transaction1.commit();
+		em1.close();
+		
 		
 		return emp;
 	}

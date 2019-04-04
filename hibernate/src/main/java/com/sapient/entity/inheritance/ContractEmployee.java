@@ -3,7 +3,7 @@ package com.sapient.entity.inheritance;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 @DiscriminatorValue("2")
 public class ContractEmployee extends Employee{
 	

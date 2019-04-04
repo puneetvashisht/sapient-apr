@@ -11,7 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Table(name = "employee101")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="employee_type", discriminatorType=DiscriminatorType.INTEGER)

@@ -1,12 +1,17 @@
 package com.sapient.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
@@ -25,6 +30,22 @@ public class Employee {
 	
 	double salary;
 	
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	List<Address> addresses;
+	
+	
+	
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+
 	public Employee(){
 		
 	}
@@ -60,10 +81,18 @@ public class Employee {
 		this.salary = salary;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", addresses=" + addresses + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+//	}
+//	
+	
 	
 	
 	

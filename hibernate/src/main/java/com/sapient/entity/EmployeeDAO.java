@@ -39,23 +39,24 @@ public class EmployeeDAO {
 		transaction.begin();
 		
 		Employee emp =  em.find(Employee.class, id);
+//		System.out.println(emp.getAddresses());
 //		emp.setSalary(33333.44);
 		
 	
 		transaction.commit();
 		em.close();
 		
-		emp.setSalary(44444.44);
-		
-		EntityManager em1 = emf.createEntityManager();
-		
-		EntityTransaction transaction1 = em1.getTransaction();
-		transaction1.begin();
-		
-		em1.merge(emp);
-		
-		transaction1.commit();
-		em1.close();
+//		emp.setSalary(44444.44);
+//		
+//		EntityManager em1 = emf.createEntityManager();
+//		
+//		EntityTransaction transaction1 = em1.getTransaction();
+//		transaction1.begin();
+//		
+//		em1.merge(emp);
+//		
+//		transaction1.commit();
+//		em1.close();
 		
 		
 		return emp;

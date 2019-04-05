@@ -82,6 +82,18 @@ public Employee findAllEmployeByName(String name){
 		return employee;
 	}
 
+public void addAddress(Address address) {
+	EntityManager em = emf.createEntityManager();
+	EntityTransaction transaction = em.getTransaction();
+	transaction.begin();
+	
+	em.persist(address);
+	
+	transaction.commit();
+	em.close();
+	
+}
+
 	
 	
 

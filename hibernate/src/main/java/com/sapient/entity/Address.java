@@ -1,9 +1,12 @@
 package com.sapient.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Address {
@@ -17,9 +20,22 @@ public class Address {
 	String location;
 	
 	String city;
+	
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "E_Id")
+	Employee employee;
 
 	
 	
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
 	public Address() {
 		super();
 	}

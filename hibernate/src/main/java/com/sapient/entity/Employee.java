@@ -31,7 +31,7 @@ public class Employee {
 	double salary;
 	
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="employee")
 	List<Address> addresses;
 	
 	
@@ -82,16 +82,16 @@ public class Employee {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", addresses=" + addresses + "]";
-	}
-
 //	@Override
 //	public String toString() {
-//		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+//		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", addresses=" + addresses + "]";
 //	}
-//	
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+	}
+	
 	
 	
 	

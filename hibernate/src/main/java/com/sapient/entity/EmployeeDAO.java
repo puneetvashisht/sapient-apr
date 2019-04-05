@@ -74,7 +74,8 @@ public class EmployeeDAO {
 public Employee findAllEmployeByName(String name){
 		
 		EntityManager em = emf.createEntityManager();
-		TypedQuery<Employee> query = em.createQuery("select e from Employee e where e.name=:empname", Employee.class);
+		TypedQuery<Employee> query = em.createNamedQuery("selectEmployeeByName", Employee.class);
+//		TypedQuery<Employee> query = em.createQuery("select e from Employee e where e.name=:empname", Employee.class);
 		query.setParameter("empname", name);
 		Employee employee = query.getSingleResult();
 		return employee;

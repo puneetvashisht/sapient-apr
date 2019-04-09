@@ -37,6 +37,7 @@ public class EmployeeRepo {
 	
 	public List<Employee> findAllEmployees(){
 		RowMapper<Employee> rowMapper = new MyRowMapper();
+//		jdbcTemplate.queryFor
 		List<Employee> employees = jdbcTemplate.query("SELECT id, EMP_NAME, salary FROM sapientdb.Employee", rowMapper);
 		return employees;
 	}

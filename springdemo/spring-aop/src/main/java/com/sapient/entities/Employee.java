@@ -1,10 +1,30 @@
 package com.sapient.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Employee {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
+	@Column(name="EMP_NAME")
 	String name;
 	double salary;
+	
+	public Employee(){
+		
+	}
+	
+	public Employee(String name, double salary) {
+		super();
+		this.name = name;
+		this.salary = salary;
+	}
 	
 	public Employee(int id, String name, double salary) {
 		super();

@@ -5,14 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+		@NamedQuery(name="findAllEmployees", query="from Employee e"),
+		@NamedQuery(name="findEmployeeByName", query="from Employee e where e.name=:empname")
+})
+
 public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
-	@Column(name="EMP_NAME")
+	@Column(name="EMP_NAME", unique=true)
 	String name;
 	double salary;
 	

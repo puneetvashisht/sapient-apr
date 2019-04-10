@@ -2,6 +2,12 @@
 <div class="container">
   <div class="row">
 
+    <add-employee></add-employee>  
+
+  </div>
+  <hr/>
+  <div class="row">
+
     <my-card *ngFor="let employee of employees" [title]="employee.name"></my-card>
 
 

@@ -4,10 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './card.component';
+import { AddEmployeeComponent } from './add-employee.component';
 
 @NgModule({
   declarations: [
-    AppComponent, CardComponent
+    AppComponent, CardComponent,AddEmployeeComponent
   ],
   imports: [
     BrowserModule, HttpClientModule

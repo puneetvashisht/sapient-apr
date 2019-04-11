@@ -1,5 +1,11 @@
 
 <div class="container">
+
+    <div class="row">
+
+        <p>{{today | date:'MMM d, yy' }}</p>
+    
+      </div>
   <div class="row">
 
     <add-employee></add-employee>  
@@ -7,8 +13,8 @@
   </div>
   <hr/>
   <div class="row">
-
-    <my-card *ngFor="let employee of employees" [title]="employee.name"></my-card>
+      <input #searchTxt (keyup)="0" type="text" class="form-control" placeholder="Search with Employee Name" aria-label="Username" aria-describedby="basic-addon1"/>
+    <my-card *ngFor="let employee of employees | search:searchTxt.value" [title]="employee.name"></my-card>
 
 
   </div>

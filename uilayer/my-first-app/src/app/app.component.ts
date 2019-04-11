@@ -11,11 +11,12 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit{
   title = 'my-first-app';
 
+  today = new Date();
   employees: Array<Employee> = []
   constructor(private http: HttpClient) { }
 
   ngOnInit(){
-    this.http.get('http://localhost:8080/01sapient-springmvc/api/employees')
+    this.http.get('http://localhost:8080/api/employees')
     .subscribe((res: Array<Employee>)=>{
       console.log(res)
       this.employees = res;

@@ -31,7 +31,7 @@ export class AddEmployeeComponent implements OnInit {
     addEmployee(name:string, salary:number){
         console.log('Http POST here..', name, salary)
         var emp = {name, salary}
-        this.http.post('http://localhost:8080/01sapient-springmvc/api/employee', emp)
+        this.http.post('http://localhost:8080/api/employee', emp)
         .subscribe((res)=>console.log(res));
     }
 

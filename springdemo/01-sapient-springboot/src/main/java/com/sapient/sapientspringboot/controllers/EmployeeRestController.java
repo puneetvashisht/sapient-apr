@@ -56,6 +56,14 @@ public class EmployeeRestController {
 		return emp;
 
 	}
+	
+	@RequestMapping(path="/employee/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteEmployee(@PathVariable("id") int id){
+		employeeJpaRepo.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+		
+	}
+	
 	@RequestMapping(path="/employees", method=RequestMethod.GET)
 	public List<Employee> findAllEmployee(){
 		return employeeJpaRepo.findAll();

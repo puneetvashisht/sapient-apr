@@ -14,7 +14,7 @@
   <hr/>
   <div class="row">
       <input #searchTxt (keyup)="0" type="text" class="form-control" placeholder="Search with Employee Name" aria-label="Username" aria-describedby="basic-addon1"/>
-    <my-card *ngFor="let employee of employees | search:searchTxt.value" [title]="employee.name"></my-card>
+    <my-card *ngFor="let employee of employees | search:searchTxt.value" [title]="employee.name" [empid]="employee.id"></my-card>
 
 
   </div>

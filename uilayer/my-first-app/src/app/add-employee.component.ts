@@ -6,6 +6,10 @@ import { HttpClient } from '@angular/common/http';
     template: `
         <h2>Add Employee</h2>
 
+        <div *ngIf="message!=''" class="alert alert-success" role="alert">
+            {{message}}
+        </div>
+
         <div class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Employee Name</span>
@@ -28,11 +32,18 @@ export class AddEmployeeComponent implements OnInit {
 
     constructor(private http: HttpClient) { }
 
+    message: string = '';
+
     addEmployee(name:string, salary:number){
         console.log('Http POST here..', name, salary)
         var emp = {name, salary}
         this.http.post('http://localhost:8080/api/employee', emp)
-        .subscribe((res)=>console.log(res));
+        .subscribe((res)=>{
+            
+            console.log(res)
+            this.message = "Employee added!!"
+        
+        });
     }
 
     ngOnInit() { 

@@ -5,19 +5,33 @@
 
         <p>{{today | date:'MMM d, yy' }}</p>
     
+    </div>
+      
+      <div class="row">
+
+          <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link active" routerLink="/">View Employees</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/add">Add Employees</a>
+              </li>
+             
+            </ul>
       </div>
+
   <div class="row">
 
-    <add-employee></add-employee>  
+
+
+   
+
+    <router-outlet></router-outlet>
+
+   
 
   </div>
-  <hr/>
-  <div class="row">
-      <input #searchTxt (keyup)="0" type="text" class="form-control" placeholder="Search with Employee Name" aria-label="Username" aria-describedby="basic-addon1"/>
-    <my-card *ngFor="let employee of employees | search:searchTxt.value" [title]="employee.name" [empid]="employee.id"></my-card>
 
-
-  </div>
 
 </div>
 

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sapient.entities.Employee;
 import com.sapient.repos.EmployeeJpaRepo;
+import com.sapient.services.MessageReceiver;
+import com.sapient.services.MessageService;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
@@ -24,6 +26,12 @@ import com.sapient.repos.EmployeeJpaRepo;
 public class EmployeeRestController {
 	@Autowired
 	EmployeeJpaRepo employeeJpaRepo;
+	
+	@Autowired
+	MessageService messageService;
+	
+	@Autowired
+	MessageReceiver messageReceiver;
 	
 	@RequestMapping(path="/employee/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Employee> findEmployee(@PathVariable("id") int id){
@@ -56,6 +64,7 @@ public class EmployeeRestController {
 	}
 	@RequestMapping(path="/employees", method=RequestMethod.GET)
 	public List<Employee> findAllEmployee(){
+		messageService.execute();
 		return employeeJpaRepo.findAllEmployees();
 	}
 	

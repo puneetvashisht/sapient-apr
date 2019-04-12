@@ -6,13 +6,20 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './card.component';
 import { AddEmployeeComponent } from './add-employee.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { RouterModule, Routes } from '@angular/router';
+import { ViewEmployeeComponent } from './view-employee.component';
+
+const routes: Routes = [
+  { path: '', component: ViewEmployeeComponent },
+  { path: 'add', component:  AddEmployeeComponent}
+];
 
 @NgModule({
   declarations: [
-    AppComponent, CardComponent,AddEmployeeComponent, SearchPipe
+    AppComponent, CardComponent,AddEmployeeComponent, ViewEmployeeComponent, SearchPipe
   ],
   imports: [
-    BrowserModule, HttpClientModule
+    BrowserModule, HttpClientModule, RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

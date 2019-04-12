@@ -27,6 +27,11 @@
 		<constructor-arg value="queue.order1" />
 	</bean>
 	
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<constructor-arg ref="connectionFactory" />
+		<property name="defaultDestination" ref="orderQueue" />
+	</bean>
+	
 	<bean id="myJmsListener" class="com.sapient.services.MyJmsListener">
 	</bean>
 	
@@ -34,10 +39,7 @@
 	 <jms:listener destination="queue.order1" ref="myJmsListener"/> 
 	 </jms:listener-container>
 
-	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-		<constructor-arg ref="connectionFactory" />
-		<property name="defaultDestination" ref="orderQueue" />
-	</bean>
+	
 	
 	<bean id="dataSource" 
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">

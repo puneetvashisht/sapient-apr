@@ -4,19 +4,19 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './card.component';
-import { AddEmployeeComponent } from './add-employee.component';
+import { AddFeedbackComponent } from './add-feedback.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { RouterModule, Routes } from '@angular/router';
-import { ViewEmployeeComponent } from './view-employee.component';
+import { ViewFeedbacksComponent } from './view-feedbacks.component'
 
 const routes: Routes = [
-  { path: '', component: ViewEmployeeComponent },
-  { path: 'add', component:  AddEmployeeComponent}
+  { path: '', component: ViewFeedbacksComponent },
+  { path: 'add', component:  AddFeedbackComponent}
 ];
 
 @NgModule({
   declarations: [
-    AppComponent, CardComponent,AddEmployeeComponent, ViewEmployeeComponent, SearchPipe
+    AppComponent, CardComponent,AddFeedbackComponent, ViewFeedbacksComponent, SearchPipe
   ],
   imports: [
     BrowserModule, HttpClientModule, RouterModule.forRoot(routes)

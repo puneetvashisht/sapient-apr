@@ -1,17 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Employee } from '../models/employee';
+import { Feedback } from '../models/feedback';
 
 @Pipe({
     name: 'search'
 })
 export class SearchPipe implements PipeTransform {
 
-    transform(employees: Array<Employee>, empname: string) {
+    transform(feedbacks: Array<Feedback>, searchStr: string) {
 
 
-        let filteredEmployees = employees.filter(emp => emp.name.includes(empname));
-        console.log(employees, empname);
-        return filteredEmployees;
+        let filteredFeedbacks = feedbacks.filter(feedback => feedback.description.includes(searchStr));
+        return filteredFeedbacks;
         
     }
 

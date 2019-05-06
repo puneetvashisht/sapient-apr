@@ -4,22 +4,21 @@ import { HttpClient } from '@angular/common/http';
 @Component({
     selector: 'my-card',
     template: `
-    <div class="card" style="width: 18rem;">
-    <img src="https://via.placeholder.com/100" class="card-img-top" alt="..."/>
-    <div class="card-body">
-        <h5 class="card-title">{{title | uppercase}}</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <button  class="btn btn-danger" (click)="deleteEmployee()">Delete - {{empid}}</button>
-    </div>
-    </div>
-    
-    
+    <tr>
+        <td>Id</td>
+        <td>{{rating}}</td>
+        <td>{{description}}</td>
+        <td> {{userName}}</td>
+    </tr>
+
+    <my-card *ngFor="let feedback of feedbacks | search:searchTxt.value" [rating]="feedback.rating" [description]="feedback.description" [userName]="feedback.userName"></my-card> 
     `
 })
 export class CardComponent implements OnInit {
 
-    @Input('title')title: string = 'Default title!!'
-    @Input('empid')empid: number;
+    @Input('rating')rating: number = 0
+    @Input('description')description: string;
+    @Input('userName')userName: string;
 
     constructor(private http: HttpClient) { }
 
@@ -29,7 +28,7 @@ export class CardComponent implements OnInit {
 
     deleteEmployee(){
         console.log('click event...')
-        this.http.delete('http://localhost:8080/api/employee/' + this.empid)
+        this.http.delete('http://localhost:8080/api/employee/')
         .subscribe(res=>{
             console.log(res);
         })

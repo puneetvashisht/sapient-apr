@@ -13,6 +13,10 @@ export class UserService {
         console.log(user);
         return this.http.post('http://localhost:8080/api/auth/signup', user)
     }
+    login(user): Observable<any>{
+        console.log(user);
+        return this.http.post('http://localhost:8080/api/auth/signin', user)
+    }
 
     checkUsernameAvailability(username: string): Observable<any>{
         return this.http.get('http://localhost:8080/api/user/checkUsernameAvailability?username='+username)

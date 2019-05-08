@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './card.component';
@@ -14,19 +15,68 @@ import { ViewApprovedFeedbacksComponent } from './components/feedbacks/view-appr
 import { FeedbackService } from './services/feedback.service';
 import { SignupComponent } from './components/user/signup/signup.component';
 import { UserService } from './services/user/user.service';
+import { LoginComponent } from './components/user/login/login.component';
+
 const routes: Routes = [
   { path: '', component: ViewFeedbacksComponent },
   { path: 'viewApproved', component: ViewApprovedFeedbacksComponent },
   { path: 'add', component:  AddFeedbackComponent},
-  { path: 'signup', component:  SignupComponent}
+  { path: 'signup', component:  SignupComponent},
+  { path: 'login', component:  LoginComponent}
 ];
+
+
+/**
+ * Custom angular notifier options
+ */
+const customNotifierOptions: NotifierOptions = {
+  position: {
+		horizontal: {
+			position: 'left',
+			distance: 12
+		},
+		vertical: {
+			position: 'bottom',
+			distance: 12,
+			gap: 10
+		}
+	},
+  theme: 'material',
+  behaviour: {
+    autoHide: 5000,
+    onClick: 'hide',
+    onMouseover: 'pauseAutoHide',
+    showDismissButton: true,
+    stacking: 4
+  },
+  animations: {
+    enabled: true,
+    show: {
+      preset: 'slide',
+      speed: 300,
+      easing: 'ease'
+    },
+    hide: {
+      preset: 'fade',
+      speed: 300,
+      easing: 'ease',
+      offset: 50
+    },
+    shift: {
+      speed: 300,
+      easing: 'ease'
+    },
+    overlap: 150
+  }
+};
+
 
 @NgModule({
   declarations: [
-    AppComponent, CardComponent,AddFeedbackComponent, ViewFeedbacksComponent, ViewApprovedFeedbacksComponent, SearchPipe, FeedbackApproveButtonComponent, SignupComponent
+    AppComponent, CardComponent,AddFeedbackComponent, ViewFeedbacksComponent, ViewApprovedFeedbacksComponent, SearchPipe, FeedbackApproveButtonComponent, SignupComponent, LoginComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule
+    BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule,  NotifierModule.withConfig(customNotifierOptions)
   ],
   providers: [FeedbackService, UserService],
   bootstrap: [AppComponent]

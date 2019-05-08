@@ -1,0 +1,12 @@
+.has-error {
+    color: #f5222d;
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+
+  .btn-primary[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

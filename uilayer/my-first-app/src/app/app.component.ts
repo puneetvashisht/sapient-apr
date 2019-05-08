@@ -16,11 +16,11 @@ export class AppComponent implements OnInit{
   constructor(private http: HttpClient) { }
 
   ngOnInit(){
-    this.http.get('http://localhost:8080/api/employees')
-    .subscribe((res: Array<Employee>)=>{
-      console.log(res)
-      this.employees = res;
-    })
+    // this.http.get('http://localhost:8080/api/employees')
+    // .subscribe((res: Array<Employee>)=>{
+    //   console.log(res)
+    //   this.employees = res;
+    // })
   }
 
   // [

@@ -1,0 +1,87 @@
+<div className="signup-container">
+    <h2 className="page-title">Sign Up</h2>
+    <div className="signup-content">
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+
+                    <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="name"
+                                   formControlName="name">
+                            <div *ngIf="myForm.controls.name.invalid && (myForm.controls.name.dirty || myForm.controls.name.touched)"
+                                   class="has-error">
+                                   <div *ngIf="myForm.controls.name.errors.required">
+                                        Name is required.
+                                    </div>
+                                    <div *ngIf="myForm.controls.name.errors.minlength">
+                                        Name is too short (Minimum 4 characters needed).
+                                    </div>
+                            </div>
+                          </div> 
+                      <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text"
+                               class="form-control"
+                               id="username"
+                               formControlName="username">
+                        <div *ngIf="myForm.controls.username.invalid && (myForm.controls.username.dirty || myForm.controls.username.touched)"
+                               class="has-error">
+                               <div *ngIf="myForm.controls.username.errors.required">
+                                    Username is required.
+                                </div>
+                                <div *ngIf="myForm.controls.username.errors.minlength">
+                                    Username is too short (Minimum 3 characters needed).
+                                </div>
+                                <div *ngIf="myForm.controls.username.errors.userAlreadyExists">
+                                  This username is already taken.
+                              </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input type="text"
+                               class="form-control"
+                               id="email"
+                               formControlName="email">
+                        <div *ngIf="myForm.controls.email.invalid && (myForm.controls.email.dirty || myForm.controls.email.touched)"
+                               class="has-error">
+                               <div *ngIf="myForm.controls.email.errors.required">
+                                    Email is required.
+                                </div>
+                                <div *ngIf="myForm.controls.email.errors.pattern">
+                                    Email not valid.
+                                </div>
+                                <div *ngIf="myForm.controls.email.errors.emailAlreadyExists">
+                                    This Email is already registered.
+                              </div>
+                        </div>
+                        
+                      </div>
+         
+                  
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password"
+                             class="form-control"
+                             id="password"
+                             formControlName="password">
+                        <div *ngIf="myForm.controls.password.invalid && (myForm.controls.password.dirty || myForm.controls.password.touched)"
+                               class="has-error">
+                               <div *ngIf="myForm.controls.password.errors.required">
+                                    Password is required.
+                                </div>
+                                <div *ngIf="myForm.controls.password.errors.minlength">
+                                        Password is too short (Minimum 6 characters needed).
+                                </div>
+                                <div *ngIf="myForm.controls.password.errors.maxlength">
+                                        Password is too long (Maximum 20 characters allowed).
+                                </div>
+                        </div>
+                    </div>
+                   
+                    <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Sign Up</button>
+                  </form>
+    </div>
+</div>

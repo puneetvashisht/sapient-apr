@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Feedback } from './models/feedback';
+import { Feedback } from '../../models/feedback';
+import { ResponseMessage } from '../../models/response-message';
+import { FeedbackService } from 'src/app/services/feedback.service';
 
 @Component({
   selector: 'view-employee',
@@ -15,6 +17,7 @@ import { Feedback } from './models/feedback';
               <th scope="col">Description</th>
               <th scope="col">Rated By</th>
               <th scope="col">Approve for Display</th>
+              <th scope="col">Date Created</th>
             </tr>
           </thead>
           <tbody>
@@ -22,7 +25,8 @@ import { Feedback } from './models/feedback';
               <td>{{feedback.rating}}</td>
               <td>{{feedback.description}}</td>
               <td> {{feedback.userName}}</td>
-              <td> <button type="button" class="btn btn-success" (click)="approve(feedback.id, true)">{{feedback.approved? 'Approved': 'Disapproved'}}</button></td>
+              <td><app-caption-button [approved]="feedback.approved" btclass="btn btn-warning" [key]="feedback.id"></app-caption-button></td>
+              <td> {{feedback.dateCreated}}</td>
             </tr>
           </tbody>
           </table>
@@ -34,22 +38,17 @@ export class ViewFeedbacksComponent implements OnInit {
 
   feedbacks: Array<Feedback> = []
   message : string 
-  constructor(private http: HttpClient) { }
+  buttonCaption: string = 'T'
+  constructor(private feedbackService: FeedbackService) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:8080/api/feedback')
+    this.feedbackService.fetchAllFeedbacks()
       .subscribe((res: Array<Feedback>) => {
         console.log(res)
         this.feedbacks = res;
       })
   }
 
-  approve(feedbackId: number, aproove: boolean){
-    this.http.get('http://localhost:8080/api/feedback/approve/' + feedbackId)
-    .subscribe((res: string) => {
-      console.log(res)
-      // this.message = res
-    })
-  }
+ 
 
 }

@@ -1,6 +1,6 @@
 export class Feedback{
 
-    constructor(public rating:number, public description: string, public userName:string){
+    constructor(public rating:number, public description: string, public userName:string, public dateCreated: Date){
         
     }
 

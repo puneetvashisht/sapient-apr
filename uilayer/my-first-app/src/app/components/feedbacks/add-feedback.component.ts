@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { FeedbackService } from 'src/app/services/feedback.service';
+import { Feedback } from 'src/app/models/feedback';
+
 
 @Component({
     selector: 'add-feedback',
@@ -32,16 +34,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddFeedbackComponent implements OnInit {
 
-    constructor(private http: HttpClient) { }
+    constructor(private feedbackService: FeedbackService) { }
 
     message: string = '';
 
     addFeedback(description:string, rating:number){
         // console.log('Http POST here..', name, salary)
-        var emp = {rating, description, userName:'Hard-coded'}
-        this.http.post('http://localhost:8080/api/feedback', emp)
+        let feedback: Feedback = new Feedback(rating, description, 'Hard-Coded', null);
+        
+        this.feedbackService.addFeedback(feedback)
         .subscribe((res)=>{
-            
             console.log(res)
             this.message = "Feedback added!!"
         

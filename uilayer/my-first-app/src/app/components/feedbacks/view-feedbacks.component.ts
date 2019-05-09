@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Feedback } from '../../models/feedback';
 import { ResponseMessage } from '../../models/response-message';
 import { FeedbackService } from 'src/app/services/feedback.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'view-employee',
@@ -43,6 +44,7 @@ export class ViewFeedbacksComponent implements OnInit {
 
   ngOnInit() {
     this.feedbackService.fetchAllFeedbacks()
+    .pipe(first())
       .subscribe((res: Array<Feedback>) => {
         console.log(res)
         this.feedbacks = res;

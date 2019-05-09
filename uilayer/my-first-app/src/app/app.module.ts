@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
@@ -16,6 +16,7 @@ import { FeedbackService } from './services/feedback.service';
 import { SignupComponent } from './components/user/signup/signup.component';
 import { UserService } from './services/user/user.service';
 import { LoginComponent } from './components/user/login/login.component';
+import { JwtInterceptor, ErrorInterceptor } from './helpers';
 
 const routes: Routes = [
   { path: '', component: ViewFeedbacksComponent },
@@ -78,7 +79,10 @@ const customNotifierOptions: NotifierOptions = {
   imports: [
     BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule,  NotifierModule.withConfig(customNotifierOptions)
   ],
-  providers: [FeedbackService, UserService],
+  providers: [FeedbackService, UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

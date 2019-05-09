@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from './models/employee';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from './services/user/user.service';
+import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 
 @Component({
@@ -13,7 +16,7 @@ export class AppComponent implements OnInit{
 
   today = new Date();
   employees: Array<Employee> = []
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService, private notifier: NotifierService, private router: Router) { }
 
   ngOnInit(){
     // this.http.get('http://localhost:8080/api/employees')
@@ -21,6 +24,12 @@ export class AppComponent implements OnInit{
     //   console.log(res)
     //   this.employees = res;
     // })
+  }
+
+  logout(){
+    this.userService.logout();
+    this.notifier.notify( 'success', "You have successfully logged out!!")
+    this.router.navigate(['/login']);
   }
 
   // [

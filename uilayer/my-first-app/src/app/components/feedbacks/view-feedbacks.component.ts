@@ -43,11 +43,15 @@ export class ViewFeedbacksComponent implements OnInit {
   constructor(private feedbackService: FeedbackService) { }
 
   ngOnInit() {
+    console.log('In feedbacks view component')
     this.feedbackService.fetchAllFeedbacks()
     .pipe(first())
       .subscribe((res: Array<Feedback>) => {
         console.log(res)
         this.feedbacks = res;
+      },
+      error => {
+        console.log('Error case', error);
       })
   }
 

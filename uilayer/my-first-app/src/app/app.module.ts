@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './card.component';
@@ -17,11 +18,20 @@ import { SignupComponent } from './components/user/signup/signup.component';
 import { UserService } from './services/user/user.service';
 import { LoginComponent } from './components/user/login/login.component';
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { AuthGuard } from './guards';
+import { HomeComponent } from './components/common/home.component';
 
 const routes: Routes = [
-  { path: '', component: ViewFeedbacksComponent },
-  { path: 'viewApproved', component: ViewApprovedFeedbacksComponent },
-  { path: 'add', component:  AddFeedbackComponent},
+
+  { path: '', component: HomeComponent },
+  { path: 'viewApprovedFeedbacks', component: ViewApprovedFeedbacksComponent },
+  { 
+    path: 'viewFeedbacks', 
+    component: ViewFeedbacksComponent, 
+    canActivate: [AuthGuard], 
+    data: { roles: ["ROLE_ADMIN"] }
+  },
+  { path: 'addFeedback', component:  AddFeedbackComponent},
   { path: 'signup', component:  SignupComponent},
   { path: 'login', component:  LoginComponent}
 ];
@@ -74,10 +84,10 @@ const customNotifierOptions: NotifierOptions = {
 
 @NgModule({
   declarations: [
-    AppComponent, CardComponent,AddFeedbackComponent, ViewFeedbacksComponent, ViewApprovedFeedbacksComponent, SearchPipe, FeedbackApproveButtonComponent, SignupComponent, LoginComponent
+    AppComponent, CardComponent,AddFeedbackComponent, ViewFeedbacksComponent, ViewApprovedFeedbacksComponent, SearchPipe, FeedbackApproveButtonComponent, SignupComponent, LoginComponent,HomeComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule,  NotifierModule.withConfig(customNotifierOptions)
+    BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule,  NotifierModule.withConfig(customNotifierOptions), JwtModule
   ],
   providers: [FeedbackService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

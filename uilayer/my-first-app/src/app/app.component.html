@@ -1,51 +1,34 @@
 
-<div class="container">
+        <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" routerLink="/">Home</a>
+                <a class="nav-link active" routerLink="/viewApprovedFeedbacks">View Approved Feedbacks</a>
+                <a class="nav-link active" routerLink="/viewFeedbacks" *ngIf="isAdmin">View Feedbacks</a>
+                <a class="nav-link" routerLink="/addFeedback">Submit Feedback</a>
+                <a class="nav-item nav-link" routerLink="/login">Logout</a>
+            </div>
+        </nav>
 
-    <div class="row">
-
-        <p>{{today | date:'medium' }}</p>
-        <notifier-container></notifier-container>
-    </div>
-      
-      <div class="row">
-
-          <ul class="nav">
-              <li class="nav-item">
-                <a class="nav-link active" routerLink="/">View Feedbacks</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" routerLink="/viewApproved">View Approved Feedbacks</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/add">Submit Feedback</a>
-              </li>
-              <li class="nav-item">
+        <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="!currentUser">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" routerLink="/">Home</a>
                 <a class="nav-link" routerLink="/signup">SignUp</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/login">Login</a>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn btn-secondary" (click)="logout()">LogOut</button>
-              </li>
-             
-            </ul>
-      </div>
+                <a class="nav-item nav-link" routerLink="/login">Login</a>
+            </div>
+        </nav>
 
-  <div class="row">
+      <!-- main app container -->
 
-
-
-   
-
-    <router-outlet></router-outlet>
-
-   
-
-  </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
 
 
-</div>
+
 
 
 

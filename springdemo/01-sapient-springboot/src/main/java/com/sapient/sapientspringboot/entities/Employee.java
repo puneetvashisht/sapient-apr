@@ -7,13 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @NamedQueries({
 		@NamedQuery(name="findAllEmployees", query="from Employee e"),
 		@NamedQuery(name="findEmployeeByName", query="from Employee e where e.name=:empname")
 })
-
+@XmlRootElement
 public class Employee {
 	
 	@Id

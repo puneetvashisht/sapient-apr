@@ -11,13 +11,13 @@ export class FeedbackService {
   constructor(private http: HttpClient) { }
 
   fetchAllFeedbacks(): Observable<any>{
-    return this.http.get('http://localhost:8080/api/feedbacks')
+    return this.http.get('api/feedbacks')
   }
   fetchApprovedFeedbacks(): Observable<any>{
-    return this.http.get('http://localhost:8080/api/feedbacks/approved')
+    return this.http.get('api/feedbacks/approved')
   }
 
   addFeedback(feedback: Feedback): Observable<any>{
-    return this.http.post('http://localhost:8080/api/feedbacks', feedback)
+    return this.http.post('api/feedbacks', feedback)
   }
 }

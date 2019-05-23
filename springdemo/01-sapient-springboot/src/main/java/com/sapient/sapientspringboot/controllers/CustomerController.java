@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sapient.sapientspringboot.entities.Customer;
@@ -24,8 +26,8 @@ public class CustomerController {
 	@Autowired
 	CustomerRepo customerRepo;
 	
-	@RequestMapping(path="/customers", method=RequestMethod.GET)
-	public List<Customer> findCustomers(){
+	@RequestMapping(path="/customers", method=RequestMethod.GET, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public @ResponseBody List<Customer> findCustomers(){
 		
 		ResponseEntity<Employee> re = null;
 		List<Customer> customers = customerRepo.findAll();

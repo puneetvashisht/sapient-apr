@@ -23,11 +23,11 @@ export class UserService {
 
     signUp(user: User): Observable<any>{
         console.log(user);
-        return this.http.post('http://localhost:8080/api/auth/signup', user)
+        return this.http.post('api/auth/signup', user)
     }
     login(user:User): Observable<any>{
         console.log(user);
-        return this.http.post('http://localhost:8080/api/auth/signin', user)
+        return this.http.post('api/auth/signin', user)
         .pipe(map((user:User) => {
             // login successful if there's a jwt token in the response
             console.log('In map fn: ', user)
@@ -47,11 +47,11 @@ export class UserService {
     }
 
     checkUsernameAvailability(username: string): Observable<any>{
-        return this.http.get('http://localhost:8080/api/user/checkUsernameAvailability?username='+username)
+        return this.http.get('api/user/checkUsernameAvailability?username='+username)
     }
 
     checkEmailAvailability(email: string): Observable<any>{
-        return this.http.get('http://localhost:8080/api/user/checkEmailAvailability?email='+email)
+        return this.http.get('api/user/checkEmailAvailability?email='+email)
     }
 
 
